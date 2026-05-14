@@ -46,6 +46,15 @@ La aplicación consume datos de la **WorldCupAPI** — una API ya desarrollada p
 
 ---
 
+## Documentación
+
+| Documento | Descripción |
+|-----------|-------------|
+| [Enunciado v5](./docs/TP_Mundial2026_Enunciado_v5_Simplificado.pdf) | Descripción completa del TP: funcionalidades a desarrollar, requerimientos de pantalla por feature, endpoints de WorldCupAPI a consumir y criterios de evaluación. |
+| [Guía Técnica v5](./docs/TP_Mundial2026_Guía_Técnica_v5.pdf) | Arquitectura del proyecto, listado completo de endpoints disponibles de la WorldCupAPI, notas de implementación y diagramas de flujo de la feature Plantel como referencia. |
+
+---
+
 ## Índice
 
 - [Contexto](#contexto)
@@ -174,14 +183,6 @@ world-cup-core/              ← BFF NestJS (puerto 4101, base /worldCupCore)
 
 > Cada feature sigue el mismo patrón que los ejemplos provistos: `model/` → `service/` → `component` en el frontend; `controller` → `service` en el backend. Estudiar los ejemplos antes de arrancar.
 
----
-
-## Documentación
-
-| Documento | Descripción |
-|-----------|-------------|
-| [Enunciado v5](./docs/TP_Mundial2026_Enunciado_v5_Simplificado.pdf) | Descripción completa del TP: funcionalidades a desarrollar, requerimientos de pantalla por feature, endpoints de WorldCupAPI a consumir y criterios de evaluación. |
-| [Guía Técnica v5](./docs/TP_Mundial2026_Guía_Técnica_v5.pdf) | Arquitectura del proyecto, listado completo de endpoints disponibles de la WorldCupAPI, notas de implementación y diagramas de flujo de la feature Plantel como referencia. |
 
 ---
 
