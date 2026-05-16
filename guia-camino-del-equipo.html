@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa - Funcionalidad Camino del Equipo</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #2e86c1;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #f4f6f7;
+            --dark: #2c3e50;
+            --border: #d5dbdb;
+            --code-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5em;
+            text-align: center;
+            margin: 30px 0;
+            padding-bottom: 15px;
+            border-bottom: 4px solid var(--secondary);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: var(--light);
+            border-left: 5px solid var(--secondary);
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: var(--dark);
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* Cajas de concepto */
+        .concept-box {
+            background: #f0f8ff;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .concept-box h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        /* Cajas de ejemplo */
+        .example-box {
+            background: #f9f9f9;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .example-box h4 {
+            margin-top: 0;
+            color: var(--dark);
+        }
+
+        /* Cajas de advertencia */
+        .warning-box {
+            background: #fef9e7;
+            border: 2px solid var(--warning);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box h3 {
+            margin-top: 0;
+            color: #d35400;
+        }
+
+        /* Cajas de éxito */
+        .success-box {
+            background: #eafaf1;
+            border: 2px solid var(--success);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .success-box h3 {
+            margin-top: 0;
+            color: #1e8449;
+        }
+
+        /* Cajas de error */
+        .error-box {
+            background: #fdedec;
+            border: 2px solid var(--danger);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .error-box h3 {
+            margin-top: 0;
+            color: #c0392b;
+        }
+
+        /* Código */
+        code {
+            background: var(--code-bg);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.95em;
+            color: #e74c3c;
+        }
+
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background: transparent;
+            color: #ecf0f1;
+            padding: 0;
+        }
+
+        /* Tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light);
+        }
+
+        tr:hover {
+            background: #e8f0fe;
+        }
+
+        /* Diagrama de flujo */
+        .flow-diagram {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .flow-step {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 5px;
+            font-weight: bold;
+        }
+
+        .flow-arrow {
+            display: inline-block;
+            color: var(--primary);
+            font-size: 1.5em;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        /* Lista de pasos */
+        .step-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding-left: 60px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Íconos */
+        .icon-check {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .icon-warning {
+            color: var(--warning);
+            font-weight: bold;
+        }
+
+        .icon-error {
+            color: var(--danger);
+            font-weight: bold;
+        }
+
+        /* Resaltado */
+        .highlight {
+            background: #fef9e7;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        /* Separador */
+        hr {
+            border: none;
+            border-top: 2px solid var(--border);
+            margin: 40px 0;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                font-size: 12pt;
+            }
+            h1 { font-size: 24pt; }
+            h2 { font-size: 18pt; }
+            h3 { font-size: 14pt; }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================= -->
+<!-- PORTADA -->
+<!-- ============================================= -->
+
+<h1>🏆 Guía Completa de Desarrollo<br>Funcionalidad "Camino del Equipo"</h1>
+
+<div style="text-align: center; margin: 30px 0;">
+    <h3 style="color: #666;">Trabajo Práctico Final - Programación III UTN</h3>
+    <p style="font-size: 1.2em; color: #888;">Mundial 2026 - Full Stack Web App</p>
+</div>
+
+<div class="concept-box">
+    <h3>🎯 Objetivo de esta guía</h3>
+    <p>Explicar <strong>desde cero</strong> cómo se construyó la funcionalidad "Camino del Equipo", entendiendo:</p>
+    <ul>
+        <li>🧱 <strong>La arquitectura</strong> del proyecto completo</li>
+        <li>🔗 <strong>Cómo se acopla</strong> lo nuevo con lo existente</li>
+        <li>💻 <strong>Cada línea de código</strong> y por qué se escribió así</li>
+        <li>🔄 <strong>El flujo de datos</strong> punta a punta</li>
+    </ul>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============================================= -->
+<!-- CAPÍTULO 1: CONCEPTOS BÁSICOS -->
+<!-- ============================================= -->
+
+<h2>📚 Capítulo 1: Conceptos Básicos (Desde Cero)</h2>
+
+<div class="concept-box">
+    <h3>🧠 ¿Qué es un Backend?</h3>
+    <p>Imagina un <strong>restaurante</strong>:</p>
+    <ul>
+        <li><strong>El mesero</strong> = El Frontend (Angular). Toma tu pedido y te trae el plato.</li>
+        <li><strong>El chef</strong> = El Backend (NestJS). Cocina los ingredientes y prepara el plato.</li>
+        <li><strong>La despensa</strong> = La Base de Datos / API externa. Donde están los ingredientes crudos.</li>
+    </ul>
+    <p>El backend <strong>nunca</strong> habla directamente con el cliente (usuario). Solo habla con el mesero (frontend).</p>
+</div>
+
+<div class="concept-box">
+    <h3>🧩 ¿Qué es NestJS?</h3>
+    <p>NestJS es un <strong>framework</strong> (conjunto de herramientas) para construir backends en TypeScript.</p>
+    <p>Organiza el código en tres piezas fundamentales:</p>
+    <table>
+        <tr>
+            <th>Pieza</th>
+            <th>Analogía</th>
+            <th>Responsabilidad</th>
+        </tr>
+        <tr>
+            <td><strong>Controller</strong></td>
+            <td>El capitán del equipo</td>
+            <td>Recibe las peticiones HTTP y las delega</td>
+        </tr>
+        <tr>
+            <td><strong>Service</strong></td>
+            <td>El chef que cocina</td>
+            <td>Contiene toda la lógica de negocio</td>
+        </tr>
+        <tr>
+            <td><strong>Module</strong></td>
+            <td>La cocina (área de trabajo)</td>
+            <td>Agrupa controllers y services relacionados</td>
+        </tr>
+    </table>
+</div>
+
+<div class="concept-box">
+    <h3>📦 ¿Qué es una Interface?</h3>
+    <p>Una <strong>interface</strong> es como un <strong>molde de galletas</strong>:</p>
+    <ul>
+        <li>Define la <strong>forma</strong> que deben tener los datos</li>
+        <li>No contiene lógica, solo describe estructura</li>
+        <li>Ejemplo: "Un partido DEBE tener: stage, matchCode, goalsFor..."</li>
+    </ul>
+</div>
+
+<div class="concept-box">
+    <h3>🏗️ ¿Qué es una Clase?</h3>
+    <p>Una <strong>clase</strong> es como una <strong>fábrica de objetos</strong>:</p>
+    <ul>
+        <li>Puede crear objetos con <code>new</code></li>
+        <li>Puede contener lógica en su constructor</li>
+        <li>Ejemplo: <code>new JourneyScreenModel({...})</code> crea un objeto procesado</li>
+    </ul>
+</div>
+
+<div class="concept-box">
+    <h3>🌐 ¿Qué es Swagger?</h3>
+    <p>Swagger es un <strong>menú interactivo</strong> de tu restaurante:</p>
+    <ul>
+        <li>Muestra todos los "platos" (endpoints) disponibles</li>
+        <li>Permite <strong>probar</strong> cada endpoint sin necesidad de frontend</li>
+        <li>Muestra qué parámetros necesita cada endpoint</li>
+        <li>Muestra la respuesta esperada</li>
+    </ul>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============================================= -->
+<!-- CAPÍTULO 2: ARQUITECTURA GENERAL -->
+<!-- ============================================= -->
+
+<h2>🏗️ Capítulo 2: Arquitectura General del Proyecto</h2>
+
+<div class="concept-box">
+    <h3>📊 Las Tres Capas del Sistema</h3>
+    <table>
+        <tr>
+            <th>Capa</th>
+            <th>Tecnología</th>
+            <th>Puerto</th>
+            <th>Analogía</th>
+            <th>Responsabilidad</th>
+        </tr>
+        <tr>
+            <td><strong>WorldCupApp</strong></td>
+            <td>Angular</td>
+            <td>3101</td>
+            <td>🧑‍🍳 El Mesero</td>
+            <td>Mostrar datos al usuario. NUNCA llama directo a WorldCupAPI</td>
+        </tr>
+        <tr>
+            <td><strong>WorldCupCore</strong></td>
+            <td>NestJS</td>
+            <td>4101</td>
+            <td>👨‍🍳 El Chef</td>
+            <td>Toda la lógica de negocio. Transforma datos</td>
+        </tr>
+        <tr>
+            <td><strong>WorldCupAPI</strong></td>
+            <td>API REST</td>
+            <td>5101</td>
+            <td>📦 La Despensa</td>
+            <td>Datos crudos. NO SE MODIFICA</td>
+        </tr>
+    </table>
+</div>
+
+<div class="flow-diagram">
+    <h3>🔄 Flujo de una Petición</h3>
+    <div class="flow-step">🌐 Navegador</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🅰️ Angular (3101)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🏢 NestJS Controller (4101)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🍳 NestJS Service (4101)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">📦 WorldCupAPI (5101)</div>
+</div>
+
+<div class="warning-box">
+    <h3>⚠️ Regla de Oro</h3>
+    <p><strong>El frontend Angular NUNCA llama directamente a la WorldCupAPI.</strong></p>
+    <p>Siempre pasa por el WorldCupCore. Si no se cumple esto, el TP está desaprobado.</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============================================= -->
+<!-- CAPÍTULO 3: ESTRUCTURA DE CARPETAS -->
+<!-- ============================================= -->
+
+<h2>📁 Capítulo 3: Estructura de Carpetas del Backend</h2>
+
+<div class="concept-box">
+    <h3>🗂️ Donde trabajamos (WorldCupCore)</h3>
+    <pre><code>backend/world-cup-core/
+└── src/
+    ├── admin/           ← Configuración del equipo (.env)
+    ├── basic/           ← Servicios base y utilidades
+    │   ├── model/       ← Enums (códigos de error, idiomas)
+    │   ├── abstract-base.service.ts    ← Servicio padre
+    │   ├── world-cup-api.service.ts    ← Cliente HTTP
+    │   └── world-cup-feature-api.service.ts ← Métodos a la API
+    ├── teams/           ← Sección "Mi Equipo"
+    │   └── services/model/ ← Modelos de ejemplo
+    ├── world-cup/       ← Sección "El Mundial" (DONDE TRABAJAMOS)
+    │   ├── controllers/
+    │   │   └── journey.controller.ts   ← NUESTRO Controller
+    │   └── services/
+    │       ├── model/
+    │       │   ├── journey-api.interface.ts  ← NUESTRO (nuevo)
+    │       │   └── journey-view-model.ts    ← NUESTRO (nuevo)
+    │       └── journey.service.ts      ← NUESTRO Service
+    └── match/           ← Sección "La Final"</code></pre>
+</div>
+
+<div class="concept-box">
+    <h3>🏢 Analogía del Edificio</h3>
+    <table>
+        <tr>
+            <th>Carpeta</th>
+            <th>Como un...</th>
+            <th>Contiene</th>
+        </tr>
+        <tr>
+            <td><code>app.module.ts</code></td>
+            <td>🏢 Edificio completo</td>
+            <td>Agrupa todos los pisos</td>
+        </tr>
+        <tr>
+            <td><code>world-cup/</code></td>
+            <td>🏠 Un piso del edificio</td>
+            <td>Controllers y Services de "El Mundial"</td>
+        </tr>
+        <tr>
+            <td><code>teams/</code></td>
+            <td>🏠 Otro piso</td>
+            <td>Controllers y Services de "Mi Equipo"</td>
+        </tr>
+        <tr>
+            <td><code>match/</code></td>
+            <td>🏠 Otro piso más</td>
+            <td>Controllers y Services de "La Final"</td>
+        </tr>
+        <tr>
+            <td><code>basic/</code></td>
+            <td>🔧 Cuarto de máquinas</td>
+            <td>Servicios base que todos usan</td>
+        </tr>
+    </table>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============================================= -->
+<!-- CAPÍTULO 4: LO QUE YA EXISTÍA -->
+<!-- ============================================= -->
+
+<h2>🧬 Capítulo 4: Lo Que Ya Existía (El Código Viejo)</h2>
+
+<div class="concept-box">
+    <h3>🔌 Servicios Base (NO los tocamos, solo los usamos)</h3>
+
+    <h4>AbstractBaseService</h4>
+    <p>El <strong>chef principal</strong> que nos da herramientas:</p>
+    <ul>
+        <li><code>getCurrentTeamId()</code> → Lee el TEAM_ID del .env</li>
+        <li><code>resolveLang(lang?)</code> → Normaliza el idioma (es/en)</li>
+        <li><code>getEndpointData&lt;T&gt;(path, params)</code> → Hace GET a la WorldCupAPI</li>
+    </ul>
+
+    <h4>WorldCupApiService</h4>
+    <p>El <strong>mensajero</strong> que construye URLs y hace llamadas HTTP:</p>
+    <ul>
+        <li>Lee <code>WORLD_CUP_API_URL</code> del .env</li>
+        <li>Lee <code>WORLD_CUP_API_BASE_PATH</code> del .env</li>
+        <li>Construye URLs completas: <code>http://localhost:5101/worldCup/...</code></li>
+    </ul>
+
+    <h4>WorldCupFeatureApiService</h4>
+    <p>El <strong>ayudante de cocina</strong> con métodos específicos:</p>
+    <ul>
+        <li><code>getTeamPlayers()</code> → Plantel</li>
+        <li><code>getTeamHistory()</code> → Historia del equipo</li>
+        <li><code>getCurrentWorldCup()</code> → Mundial actual</li>
+        <li><code>simulateWorldCup()</code> → Simular mundial</li>
+    </ul>
+</div>
+
+<div class="concept-box">
+    <h3>📋 El Patrón que Debemos Seguir (TeamHistory)</h3>
+    <p>El equipo de la cátedra ya creó <strong>TeamHistory</strong> como ejemplo. Nosotros copiamos su estructura:</p>
+    <table>
+        <tr>
+            <th>TeamHistory (ejemplo)</th>
+            <th>Journey (nuestro)</th>
+        </tr>
+        <tr>
+            <td><code>team-history-service.interface.ts</code></td>
+            <td><code>journey-api.interface.ts</code></td>
+        </tr>
+        <tr>
+            <td><code>team-history-service.model.ts</code></td>
+            <td><code>journey-view-model.ts</code></td>
+        </tr>
+        <tr>
+            <td><code>team-history.service.ts</code></td>
+            <td><code>journey.service.ts</code></td>
+        </tr>
+        <tr>
+            <td><code>team-history.controller.ts</code></td>
+            <td><code>journey.controller.ts</code></td>
+        </tr>
+    </table>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============================================= -->
+<!-- CAPÍTULO 5: LO QUE CONSTRUIMOS -->
+<!-- ============================================= -->
+
+<h2>🔨 Capítulo 5: Lo Que Construimos (Paso a Paso)</h2>
+
+<div class="success-box">
+    <h3>✅ Resumen de Archivos</h3>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Archivo</th>
+            <th>Acción</th>
+            <th>Propósito</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><code>journey-api.interface.ts</code></td>
+            <td>🆕 CREADO</td>
+            <td>Define datos crudos de la API</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><code>journey-view-model.ts</code></td>
+            <td>🆕 CREADO</td>
+            <td>Define datos procesados para el frontend</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><code>world-cup-core-error-code.enum.ts</code></td>
+            <td>✏️ MODIFICADO</td>
+            <td>Agregamos código de error WC_JOURNEY_UNAVAILABLE</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><code>world-cup-feature-api.service.ts</code></td>
+            <td>✏️ MODIFICADO</td>
+            <td>Agregamos método getTeamJourney()</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td><code>journey.service.ts</code></td>
+            <td>✏️ MODIFICADO</td>
+            <td>Llenamos la lógica de negocio</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td><code>journey.controller.ts</code></td>
+            <td>✏️ MODIFICADO</td>
+            <td>Llenamos el endpoint REST</td>
+        </tr>
+    </table>
+</div>
+
+<hr>
+
+<!-- ARCHIVO 1 -->
+<h3>📄 Archivo 1: journey-api.interface.ts (CREADO)</h3>
+
+<div class="concept-box">
+    <h4>📍 Ubicación: <code>src/world-cup/services/model/journey-api.interface.ts</code></h4>
+    <h4>🎯 Propósito: Describir la forma exacta de los datos que nos manda la WorldCupAPI</h4>
+</div>
+
+<div class="example-box">
+    <h4>🧠 Analogía: El Formulario del Proveedor</h4>
+    <p>Cuando pides ingredientes a la despensa central (WorldCupAPI), necesitas saber exactamente cómo te los van a entregar. Esta interfaz es ese "formulario" que describe el paquete que recibirás.</p>
+</div>
+
+<pre><code>// Esto describe UN partido en el camino del equipo
+export interface JourneyMatchApiItem {
+  stage: string;           // Ej: "GROUP_STAGE", "QUARTER_FINALS", "FINAL"
+  matchCode: string;       // Ej: "A-M1", "QF-1"
+  opponentTeamId: string;  // Ej: "jpn", "bra"
+  opponentTeamName: string;// Ej: "Japan", "Brazil"
+  goalsFor: number;        // Goles a favor (ej: 2)
+  goalsAgainst: number;    // Goles en contra (ej: 1)
+  result: 'WIN' | 'LOSS' | 'DRAW';  // Solo puede ser uno de estos 3
+  resolution: string;      // Ej: "REGULAR_TIME", "PENALTIES"
+  isPending: boolean;      // true = partido no jugado aún
+}
+
+// Esto describe la respuesta COMPLETA del endpoint
+export interface JourneyApiResponse {
+  worldCupId: string;           // ID único del mundial
+  teamId: string;               // ID del equipo (arg, aus, bra...)
+  teamName: string;             // Nombre del equipo
+  worldCupStatus: string;       // Estado del mundial
+  stageReached: string;         // Hasta dónde llegó el equipo
+  isChampion: boolean;          // ¿Fue campeón?
+  isFinalPending: boolean;      // ¿Falta jugar la final?
+  eliminatedByTeamId: string | null;    // Quién lo eliminó (o null)
+  eliminatedByTeamName: string | null;  // Nombre del eliminador
+  summary: string;              // Texto narrativo en español
+  matches: JourneyMatchApiItem[]; // Lista de partidos
+}</code></pre>
+
+<div class="example-box">
+    <h4>🔍 Explicación línea por línea</h4>
+    <ul>
+        <li><code>export interface</code> → Hace que esta interfaz pueda usarse desde otros archivos</li>
+        <li><code>stage: string</code> → El campo "stage" debe ser texto (ej: "GROUP_STAGE")</li>
+        <li><code>goalsFor: number</code> → El campo "goalsFor" debe ser número (ej: 2)</li>
+        <li><code>isPending: boolean</code> → Solo puede ser true o false</li>
+        <li><code>result: 'WIN' | 'LOSS' | 'DRAW'</code> → Solo acepta estos 3 valores exactos</li>
+        <li><code>eliminatedByTeamId: string | null</code> → Puede ser texto O nulo</li>
+        <li><code>matches: JourneyMatchApiItem[]</code> → Una lista/array de partidos</li>
+    </ul>
+</div>
+
+<div class="warning-box">
+    <h3>⚠️ ¿Por qué NO usamos `?` en los campos?</h3>
+    <p>En otras interfaces del proyecto usan <code>campo?: string</code> (opcional). Nosotros NO usamos <code>?</code> porque los datos del endpoint de journey siempre vienen completos. Esto nos da más seguridad.</p>
+</div>
+
+<hr>
+
+<!-- ARCHIVO 2 -->
+<h3>📄 Archivo 2: journey-view-model.ts (CREADO)</h3>
+
+<div class="concept-box">
+    <h4>📍 Ubicación: <code>src/world-cup/services/model/journey-view-model.ts</code></h4>
+    <h4>🎯 Propósito: Definir cómo entregamos los datos al frontend, ya procesados y en español</h4>
+</div>
+
+<div class="example-box">
+    <h4>🧠 Analogía: El Plato Emplatado</h4>
+    <p>Los ingredientes crudos (API) no se sirven directamente al cliente. El chef los cocina, los decora y los emplata. Este archivo define el "plato terminado" que el mesero (frontend) llevará a la mesa.</p>
+</div>
+
+<pre><code>// Traducción de resultados a español
+const RESULT_LABELS: Record&lt;string, string&gt; = {
+  WIN: 'VICTORIA',
+  LOSS: 'DERROTA',
+  DRAW: 'EMPATE',
+};
+
+// Un partido procesado, listo para mostrar
+export class JourneyMatchViewModel {
+  public stage: string;
+  public matchCode: string;
+  public opponentTeamId: string;
+  public opponentTeamName: string;
+  public goalsFor: number;
+  public goalsAgainst: number;
+  public score: string;        // ← NUEVO: "2 - 1" o "Pendiente"
+  public result: string;       // ← TRADUCIDO: "VICTORIA" en vez de "WIN"
+  public resultClass: string;  // ← NUEVO: "win", "loss", "draw" (para CSS)
+  public resolution: string;
+  public isPending: boolean;
+
+  constructor(match: { ... }) {
+    // Asigna cada campo
+    this.stage = match.stage;
+    // ... más asignaciones ...
+    
+    // LÓGICA: Si está pendiente, muestra "Pendiente"
+    this.score = match.isPending
+      ? 'Pendiente'
+      : `${match.goalsFor} - ${match.goalsAgainst}`;
+    
+    // LÓGICA: Traduce WIN → VICTORIA
+    this.result = RESULT_LABELS[match.result] || match.result;
+    
+    // LÓGICA: Clase CSS para colores
+    this.resultClass = match.result.toLowerCase();
+  }
+}
+
+// La pantalla completa
+export class JourneyScreenModel {
+  public teamId: string;
+  public teamName: string;
+  public stageReached: string;
+  public summary: string;
+  public totalMatches: number;     // ← NUEVO: Calculado
+  public eliminatedBy: string | null; // ← NUEVO: Texto formateado
+  public matches: JourneyMatchViewModel[];
+  
+  constructor(data: { ... }) {
+    // Asigna cada campo
+    this.teamId = data.teamId;
+    // ... más asignaciones ...
+    
+    // LÓGICA: Cuenta los partidos
+    this.totalMatches = data.matches.length;
+    
+    // LÓGICA: Formatea el mensaje de eliminación
+    this.eliminatedBy = data.eliminatedByTeamName
+      ? `Eliminado por: ${data.eliminatedByTeamName}`
+      : null;
+  }
+}</code></pre>
+
+<div class="example-box">
+    <h4>🔍 Transformaciones que hace este archivo</h4>
+    <table>
+        <tr>
+            <th>Dato de API (crudo)</th>
+            <th>Dato procesado</th>
+            <th>¿Dónde se hace?</th>
+        </tr>
+        <tr>
+            <td><code>result: "WIN"</code></td>
+            <td><code>result: "VICTORIA"</code></td>
+            <td><code>RESULT_LABELS[match.result]</code></td>
+        </tr>
+        <tr>
+            <td><code>goalsFor: 2, goalsAgainst: 1</code></td>
+            <td><code>score: "2 - 1"</code></td>
+            <td><code>${goalsFor} - ${goalsAgainst}</code></td>
+        </tr>
+        <tr>
+            <td><code>isPending: true</code></td>
+            <td><code>score: "Pendiente"</code></td>
+            <td>Operador ternario <code>?:</code></td>
+        </tr>
+        <tr>
+            <td><code>result: "WIN"</code></td>
+            <td><code>resultClass: "win"</code></td>
+            <td><code>.toLowerCase()</code></td>
+        </tr>
+        <tr>
+            <td><code>eliminatedByTeamName: "Uruguay"</code></td>
+            <td><code>eliminatedBy: "Eliminado por: Uruguay"</code></td>
+            <td>Template string</td>
+        </tr>
+        <tr>
+            <td><code>matches: [3 partidos]</code></td>
+            <td><code>totalMatches: 3</code></td>
+            <td><code>matches.length</code></td>
+        </tr>
+    </table>
+</div>
+
+<div class="warning-box">
+    <h3>⚠️ ¿Por qué usamos CLASES y no solo interfaces?</h3>
+    <p>Las interfaces solo describen estructura. Las <strong>clases</strong> pueden tener un <strong>constructor</strong> que ejecuta lógica al crear el objeto. Así transformamos datos automáticamente al hacer <code>new JourneyMatchViewModel(match)</code>.</p>
+    <p>Además, seguimos el mismo patrón que <code>TeamHistoryScreenModel</code> (consistencia con el proyecto).</p>
+</div>
+
+<hr>
+
+<!-- ARCHIVO 3 -->
+<h3>📄 Archivo 3: world-cup-core-error-code.enum.ts (MODIFICADO)</h3>
+
+<div class="concept-box">
+    <h4>📍 Ubicación: <code>src/basic/model/world-cup-core-error-code.enum.ts</code></h4>
+    <h4>🎯 Propósito: Agregar un nuevo código de error para cuando falle la carga del camino</h4>
+</div>
+
+<pre><code>// ANTES (código existente):
+export enum WorldCupCoreErrorCode {
+  WC_SQUAD_UNAVAILABLE = 'WC_SQUAD_UNAVAILABLE',
+  WC_TEAM_HISTORY_UNAVAILABLE = 'WC_TEAM_HISTORY_UNAVAILABLE',
+  WC_SIMULATION_UNAVAILABLE = 'WC_SIMULATION_UNAVAILABLE',
+  WC_SIMULATION_FETCH_FAILED = 'WC_SIMULATION_FETCH_FAILED',
+}
+
+// DESPUÉS (agregamos una línea):
+export enum WorldCupCoreErrorCode {
+  WC_SQUAD_UNAVAILABLE = 'WC_SQUAD_UNAVAILABLE',
+  WC_TEAM_HISTORY_UNAVAILABLE = 'WC_TEAM_HISTORY_UNAVAILABLE',
+  WC_SIMULATION_UNAVAILABLE = 'WC_SIMULATION_UNAVAILABLE',
+  WC_SIMULATION_FETCH_FAILED = 'WC_SIMULATION_FETCH_FAILED',
+  WC_JOURNEY_UNAVAILABLE = 'WC_JOURNEY_UNAVAILABLE',  // ← NUEVO
+}</code></pre>
+
+<div class="example-box">
+    <h4>🧠 ¿Para qué sirve este código?</h4>
+    <p>Cuando el frontend recibe <code>WC_JOURNEY_UNAVAILABLE</code>, sabe que debe mostrar un mensaje como:</p>
+    <p style="text-align: center; padding: 20px; background: #fef9e7;">
+        "No hay datos del camino disponibles. Primero debe simular el mundial."
+    </p>
+</div>
+
+<hr>
+
+<!-- ARCHIVO 4 -->
+<h3>📄 Archivo 4: world-cup-feature-api.service.ts (MODIFICADO)</h3>
+
+<div class="concept-box">
+    <h4>📍 Ubicación: <code>src/basic/world-cup-feature-api.service.ts</code></h4>
+    <h4>🎯 Propósito: Agregar un método que llame al endpoint de journey de la WorldCupAPI</h4>
+</div>
+
+<pre><code>// NUEVO IMPORT (al inicio del archivo):
+import type { JourneyApiResponse } from '../world-cup/services/model/journey-api.interface';
+
+// NUEVO MÉTODO (dentro de la clase):
+/** Obtiene el camino completo en el mundial para un equipo específico de la simulación actual. */
+public async getTeamJourney(teamId: string, lang?: string): Promise&lt;JourneyApiResponse&gt; {
+    return this.getEndpointData&lt;JourneyApiResponse&gt;(
+      `/world-cup/current/teams/${teamId}/journey`,
+      { lang: this.resolveLang(lang) }
+    );
+}</code></pre>
+
+<div class="example-box">
+    <h4>🔍 ¿Qué hace este método?</h4>
+    <ol>
+        <li>Recibe el <code>teamId</code> (ej: "aus")</li>
+        <li>Recibe el <code>lang</code> (ej: "es")</li>
+        <li>Construye la URL: <code>/world-cup/current/teams/aus/journey?lang=es</code></li>
+        <li>Hereda <code>getEndpointData</code> de <code>AbstractBaseService</code></li>
+        <li>Este método llama a <code>WorldCupApiService.get()</code></li>
+        <li>Que construye la URL completa: <code>http://localhost:5101/worldCup/world-cup/current/teams/aus/journey?lang=es</code></li>
+        <li>Retorna los datos tipados como <code>JourneyApiResponse</code></li>
+    </ol>
+</div>
+
+<div class="example-box">
+    <h4>🔗 ¿Cómo se acopla con lo existente?</h4>
+    <ul>
+        <li><strong>Extiende</strong> <code>AbstractBaseService</code> → Hereda <code>getEndpointData()</code></li>
+        <li><strong>Usa</strong> <code>WorldCupApiService</code> → Para hacer llamadas HTTP</li>
+        <li><strong>Sigue el patrón</strong> de <code>getTeamHistory()</code>, <code>getTeamPlayers()</code>, etc.</li>
+    </ul>
+</div>
+
+<hr>
+
+<!-- ARCHIVO 5 -->
+<h3>📄 Archivo 5: journey.service.ts (MODIFICADO - EL MÁS IMPORTANTE)</h3>
+
+<div class="concept-box">
+    <h4>📍 Ubicación: <code>src/world-cup/services/journey.service.ts</code></h4>
+    <h4>🎯 Propósito: Contiene TODA la lógica de negocio de "Camino del Equipo"</h4>
+</div>
+
+<div class="example-box">
+    <h4>🧠 Analogía: El Chef Principal</h4>
+    <p>Este es el chef que recibe la orden, va a la despensa, cocina los ingredientes, emplata el plato y se lo entrega al capitán (Controller).</p>
+</div>
+
+<pre><code>// ==========================================
+// MAPAS DE ERROR: Qué hacer cuando la API falla
+// ==========================================
+
+const JOURNEY_API_ERROR_STATUS_MAP: ApiErrorStatusMap = {
+  // Si la WorldCupAPI responde 404 (no encontrado)
+  [HttpStatus.NOT_FOUND]: {
+    messageCode: WorldCupCoreErrorCode.WC_JOURNEY_UNAVAILABLE,
+    message: 'Journey data for the selected team was not found.',
+  },
+  // Si la WorldCupAPI responde 409 (conflicto - no hay simulación)
+  [HttpStatus.CONFLICT]: {
+    messageCode: WorldCupCoreErrorCode.WC_JOURNEY_UNAVAILABLE,
+    message: 'Journey is not available right now.',
+  },
+};
+
+// Si falla por cualquier otra razón
+const JOURNEY_API_ERROR_FALLBACK: ApiErrorMappingRule = {
+  messageCode: WorldCupCoreErrorCode.WC_JOURNEY_UNAVAILABLE,
+  message: 'Unable to load journey from World Cup API.',
+  statusCode: HttpStatus.BAD_GATEWAY,  // 502
+};
+
+// ==========================================
+// EL SERVICIO PRINCIPAL
+// ==========================================
+
+@Injectable()  // ← Dice "soy un servicio que otros pueden usar"
+export class JourneyService extends AbstractBaseService {
+  
+  constructor(
+    private readonly worldCupFeatureApiService: WorldCupFeatureApiService,
+    adminService: AdminService,
+  ) {
+    super(adminService);  // Llama al constructor del padre
+  }
+
+  public async getJourney(lang?: string): Promise&lt;JourneyScreenModel&gt; {
+    try {
+      // PASO 1: Leer el TEAM_ID del .env (sin hardcodear)
+      const teamId = this.getCurrentTeamId();
+      
+      // PASO 2: Normalizar el idioma (si no viene, usa APP_LANG del .env)
+      const resolvedLang = this.resolveLang(lang);
+      
+      // PASO 3: Llamar a la WorldCupAPI para obtener datos crudos
+      const apiResponse: JourneyApiResponse =
+        await this.worldCupFeatureApiService.getTeamJourney(teamId, resolvedLang);
+      
+      // PASO 4: Transformar cada partido al formato de vista
+      const matches: JourneyMatchViewModel[] = apiResponse.matches.map(
+        (match) => new JourneyMatchViewModel(match),
+      );
+      
+      // PASO 5: Construir el modelo de pantalla completo
+      return new JourneyScreenModel({
+        teamId: apiResponse.teamId,
+        teamName: apiResponse.teamName,
+        worldCupId: apiResponse.worldCupId,
+        worldCupStatus: apiResponse.worldCupStatus,
+        stageReached: apiResponse.stageReached,
+        isChampion: apiResponse.isChampion,
+        isFinalPending: apiResponse.isFinalPending,
+        summary: apiResponse.summary,
+        eliminatedByTeamName: apiResponse.eliminatedByTeamName,
+        matches,
+      });
+      
+    } catch (error) {
+      // PASO 6: Si algo falla, usar los mapas de error definidos arriba
+      ErrorUtils.mapWorldCupApiError(
+        error,
+        JOURNEY_API_ERROR_STATUS_MAP,
+        JOURNEY_API_ERROR_FALLBACK,
+      );
+    }
+  }
+}</code></pre>
+
+<div class="example-box">
+    <h4>🔍 Explicación del flujo interno</h4>
+    <ol>
+        <li><strong>getCurrentTeamId()</strong> → Lee <code>TEAM_ID=aus</code> del <code>.env</code>. NUNCA está hardcodeado.</li>
+        <li><strong>resolveLang('es')</strong> → Si el frontend manda <code>?lang=es</code>, lo usa. Si no, usa <code>APP_LANG=es</code> del <code>.env</code>.</li>
+        <li><strong>getTeamJourney(teamId, resolvedLang)</strong> → Va a la despensa (WorldCupAPI) a buscar los ingredientes.</li>
+        <li><strong>.map((match) => new JourneyMatchViewModel(match))</strong> → Transforma CADA partido. <code>.map()</code> es como decir "para cada elemento, aplica esta transformación".</li>
+        <li><strong>new JourneyScreenModel({...})</strong> → Crea el plato emplatado con todos los datos procesados.</li>
+        <li><strong>catch (error)</strong> → Si algo falla en cualquier paso, <code>ErrorUtils</code> convierte el error en una respuesta estructurada que el frontend entiende.</li>
+    </ol>
+</div>
+
+<div class="example-box">
+    <h4>🔗 ¿Cómo se acopla con lo existente?</h4>
+    <ul>
+        <li><strong>Extiende</strong> <code>AbstractBaseService</code> → Hereda <code>getCurrentTeamId()</code> y <code>resolveLang()</code></li>
+        <li><strong>Usa</strong> <code>WorldCupFeatureApiService</code> → Para llamar a la API</li>
+        <li><strong>Usa</strong> <code>WorldCupCoreErrorCode</code> → Para los códigos de error</li>
+        <li><strong>Usa</strong> <code>ErrorUtils</code> → Para manejar errores (ya existía)</li>
+        <li><strong>Sigue el patrón</strong> de <code>TeamHistoryService</code></li>
+    </ul>
+</div>
+
+<hr>
+
+<!-- ARCHIVO 6 -->
+<h3>📄 Archivo 6: journey.controller.ts (MODIFICADO)</h3>
+
+<div class="concept-box">
+    <h4>📍 Ubicación: <code>src/world-cup/controllers/journey.controller.ts</code></h4>
+    <h4>🎯 Propósito: Exponer el endpoint REST que el frontend llamará</h4>
+</div>
+
+<div class="example-box">
+    <h4>🧠 Analogía: El Capitán del Equipo</h4>
+    <p>El Controller es el que recibe la orden del mesero (frontend) y se la pasa al chef (Service). No cocina, solo coordina.</p>
+</div>
+
+<pre><code>import { Controller, Get, Query } from '@nestjs/common';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JourneyService } from '../services/journey.service';
+import { JourneyScreenModel } from '../services/model/journey-view-model';
+
+@ApiTags('world-cup')           // Agrupa en Swagger bajo "world-cup"
+@Controller('world-cup')        // URL base: /worldCupCore/world-cup
+export class JourneyController {
+  
+  // Inyecta el JourneyService (el chef)
+  constructor(private readonly journeyService: JourneyService) {}
+
+  @Get('team-journey')          // URL completa: GET /worldCupCore/world-cup/team-journey
+  @ApiOperation({ summary: 'Get the full world cup journey for the configured team' })
+  @ApiQuery({ name: 'lang', required: false, description: 'Response language (es, en)' })
+  @ApiResponse({ status: 200, description: 'Team journey data' })
+  @ApiResponse({ status: 502, description: 'World Cup API unavailable' })
+  async getTeamJourney(@Query('lang') lang?: string): Promise&lt;JourneyScreenModel&gt; {
+    // Delega TODO el trabajo al Service
+    return this.journeyService.getJourney(lang);
+  }
+}</code></pre>
+
+<div class="example-box">
+    <h4>🔍 ¿Qué hace cada decorador?</h4>
+    <table>
+        <tr>
+            <th>Decorador</th>
+            <th>¿Qué hace?</th>
+            <th>Visible en</th>
+        </tr>
+        <tr>
+            <td><code>@ApiTags('world-cup')</code></td>
+            <td>Agrupa este endpoint en la sección "world-cup"</td>
+            <td>Swagger</td>
+        </tr>
+        <tr>
+            <td><code>@Controller('world-cup')</code></td>
+            <td>Define la ruta base del controlador</td>
+            <td>Rutas HTTP</td>
+        </tr>
+        <tr>
+            <td><code>@Get('team-journey')</code></td>
+            <td>Responde a peticiones GET en /team-journey</td>
+            <td>Rutas HTTP</td>
+        </tr>
+        <tr>
+            <td><code>@ApiOperation({...})</code></td>
+            <td>Descripción del endpoint en Swagger</td>
+            <td>Swagger</td>
+        </tr>
+        <tr>
+            <td><code>@ApiQuery({...})</code></td>
+            <td>Define el parámetro opcional ?lang=</td>
+            <td>Swagger</td>
+        </tr>
+        <tr>
+            <td><code>@ApiResponse({...})</code></td>
+            <td>Documenta las posibles respuestas</td>
+            <td>Swagger</td>
+        </tr>
+        <tr>
+            <td><code>@Query('lang')</code></td>
+            <td>Extrae el parámetro ?lang= de la URL</td>
+            <td>Rutas HTTP</td>
+        </tr>
+    </table>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============================================= -->
+<!-- CAPÍTULO 6: FLUJO COMPLETO -->
+<!-- ============================================= -->
+
+<h2>🔄 Capítulo 6: Flujo Completo Punta a Punta</h2>
+
+<div class="concept-box">
+    <h3>🧪 Cuando el usuario hace clic en "Execute" en Swagger</h3>
+</div>
+
+<div class="flow-diagram">
+    <h4>Paso a Paso del Request</h4>
+    
+    <p><strong>1️⃣ Swagger (Navegador)</strong></p>
+    <p style="color: #666;">GET /worldCupCore/world-cup/team-journey?lang=es</p>
+    <p class="flow-arrow">↓</p>
+    
+    <p><strong>2️⃣ JourneyController.getTeamJourney('es')</strong></p>
+    <p style="color: #666;">Recibe la petición. Delega al Service.</p>
+    <p class="flow-arrow">↓</p>
+    
+    <p><strong>3️⃣ JourneyService.getJourney('es')</strong></p>
+    <p style="color: #666;">Lee TEAM_ID=aus del .env</p>
+    <p style="color: #666;">Normaliza idioma a 'es'</p>
+    <p class="flow-arrow">↓</p>
+    
+    <p><strong>4️⃣ WorldCupFeatureApiService.getTeamJourney('aus', 'es')</strong></p>
+    <p style="color: #666;">Construye la URL del endpoint</p>
+    <p class="flow-arrow">↓</p>
+    
+    <p><strong>5️⃣ WorldCupApiService.get('/world-cup/current/teams/aus/journey', {lang:'es'})</strong></p>
+    <p style="color: #666;">Hace la llamada HTTP real</p>
+    <p class="flow-arrow">↓</p>
+    
+    <p><strong>6️⃣ WorldCupAPI (puerto 5101)</strong></p>
+    <p style="color: #666;">Procesa y devuelve JSON con los datos crudos</p>
+    <p class="flow-arrow">↓</p>
+    
+    <p><strong>7️⃣ JourneyService procesa los datos</strong></p>
+    <p style="color: #666;">WIN → VICTORIA, arma scores, cuenta partidos</p>
+    <p class="flow-arrow">↓</p>
+    
+    <p><strong>8️⃣ new JourneyScreenModel({...})</strong></p>
+    <p style="color: #666;">Crea el objeto final con todo procesado</p>
+    <p class="flow-arrow">↓</p>
+    
+    <p><strong>9️⃣ Controller responde al navegador</strong></p>
+    <p style="color: #666;">JSON procesado y listo para mostrar</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============================================= -->
+<!-- CAPÍTULO 7: CÓMO PROBAR -->
+<!-- ============================================= -->
+
+<h2>🧪 Capítulo 7: Cómo Probar Todo</h2>
+
+<div class="concept-box">
+    <h3>📋 Checklist de Verificación</h3>
+</div>
+
+<ol class="step-list">
+    <li>
+        <h4>Levantar WorldCupAPI (puerto 5101)</h4>
+        <pre><code>cd world-cup-api
+npm start</code></pre>
+        <p>Verificar en: <code>http://localhost:5101/worldCup/api</code></p>
+    </li>
+    <li>
+        <h4>Configurar .env</h4>
+        <pre><code>TEAM_ID=aus
+APP_LANG=es</code></pre>
+    </li>
+    <li>
+        <h4>Levantar WorldCupCore (puerto 4101)</h4>
+        <pre><code>cd backend/world-cup-core
+npm run start:dev</code></pre>
+        <p>Verificar en: <code>http://localhost:4101/worldCupCore/api</code></p>
+    </li>
+    <li>
+        <h4>Simular el mundial</h4>
+        <p>En Swagger de WorldCupCore: <code>POST /world-cup/simulate</code> → Execute</p>
+    </li>
+    <li>
+        <h4>Probar el endpoint de Journey</h4>
+        <p>En Swagger de WorldCupCore: <code>GET /world-cup/team-journey?lang=es</code> → Execute</p>
+    </li>
+    <li>
+        <h4>Verificar la respuesta</h4>
+        <p>Debe mostrar: teamId, teamName, stageReached, summary, totalMatches, matches[]</p>
+    </li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- ============================================= -->
+<!-- CAPÍTULO 8: RESUMEN FINAL -->
+<!-- ============================================= -->
+
+<h2>📊 Capítulo 8: Resumen Final</h2>
+
+<div class="success-box">
+    <h3>✅ Lo que aprendiste</h3>
+    <table>
+        <tr>
+            <th>Concepto</th>
+            <th>Explicación</th>
+        </tr>
+        <tr>
+            <td><strong>Arquitectura en capas</strong></td>
+            <td>Controller → Service → API. Cada capa tiene una responsabilidad clara.</td>
+        </tr>
+        <tr>
+            <td><strong>Separación de modelos</strong></td>
+            <td>API Interface (datos crudos) vs View Model (datos procesados).</td>
+        </tr>
+        <tr>
+            <td><strong>Inyección de dependencias</strong></td>
+            <td>Los servicios reciben sus dependencias por el constructor, no las crean ellos.</td>
+        </tr>
+        <tr>
+            <td><strong>Manejo de errores</strong></td>
+            <td>Mapas de error por código HTTP + fallback para errores inesperados.</td>
+        </tr>
+        <tr>
+            <td><strong>Variables de entorno</strong></td>
+            <td>TEAM_ID y APP_LANG se leen del .env, NUNCA hardcodeados.</td>
+        </tr>
+        <tr>
+            <td><strong>Swagger</strong></td>
+            <td>Documentación automática con decoradores.</td>
+        </tr>
+        <tr>
+            <td><strong>Herencia</strong></td>
+            <td>JourneyService extiende AbstractBaseService para reutilizar métodos.</td>
+        </tr>
+        <tr>
+            <td><strong>Patrón consistente</strong></td>
+            <td>Seguimos el mismo patrón que TeamHistory para mantener coherencia.</td>
+        </tr>
+    </table>
+</div>
+
+<div class="concept-box">
+    <h3>🏗️ Diagrama de Acoplamiento</h3>
+    <pre><code>
+┌──────────────────────────────────────────────────────────┐
+│                    LO QUE YA EXISTÍA                     │
+│                                                          │
+│  AbstractBaseService                                     │
+│  ├── getCurrentTeamId()  ← Leemos TEAM_ID del .env      │
+│  ├── resolveLang()       ← Normalizamos idioma           │
+│  └── getEndpointData()   ← Llamadas HTTP a WorldCupAPI   │
+│                                                          │
+│  WorldCupApiService      ← Cliente HTTP (axios)          │
+│  WorldCupFeatureApiService ← Métodos específicos         │
+│  ErrorUtils              ← Manejo de errores             │
+│  WorldCupCoreErrorCode   ← Códigos de error              │
+└──────────────────────────────────────────────────────────┘
+                           │
+                           │ EXTENDEMOS / USAMOS
+                           ▼
+┌──────────────────────────────────────────────────────────┐
+│                    LO QUE CONSTRUIMOS                     │
+│                                                          │
+│  JourneyApiResponse      ← Interface (datos crudos)      │
+│  JourneyMatchViewModel   ← Clase (partido procesado)     │
+│  JourneyScreenModel      ← Clase (pantalla completa)     │
+│  JourneyService          ← Lógica de negocio             │
+│  JourneyController       ← Endpoint REST                 │
+│  WC_JOURNEY_UNAVAILABLE  ← Código de error nuevo         │
+│  getTeamJourney()        ← Método en FeatureApiService   │
+└──────────────────────────────────────────────────────────┘
+                           │
+                           │ LLAMA A
+                           ▼
+┌──────────────────────────────────────────────────────────┐
+│                    WorldCupAPI (NO SE TOCA)               │
+│                                                          │
+│  GET /world-cup/current/teams/{teamId}/journey           │
+└──────────────────────────────────────────────────────────┘
+    </code></pre>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============================================= -->
+<!-- GLOSARIO -->
+<!-- ============================================= -->
+
+<h2>📖 Glosario de Términos</h2>
+
+<table>
+    <tr>
+        <th>Término</th>
+        <th>Significado</th>
+    </tr>
+    <tr>
+        <td><strong>API</strong></td>
+        <td>Interfaz de Programación de Aplicaciones. Un conjunto de reglas para que dos programas se comuniquen.</td>
+    </tr>
+    <tr>
+        <td><strong>Backend</strong></td>
+        <td>La parte del servidor. Procesa datos, aplica lógica de negocio.</td>
+    </tr>
+    <tr>
+        <td><strong>BFF</strong></td>
+        <td>Backend For Frontend. Un backend intermediario entre el frontend y otras APIs.</td>
+    </tr>
+    <tr>
+        <td><strong>Controller</strong></td>
+        <td>Recibe peticiones HTTP y las delega al Service.</td>
+    </tr>
+    <tr>
+        <td><strong>Decorador</strong></td>
+        <td>Anotación que agrega funcionalidad a una clase/método. Empieza con @.</td>
+    </tr>
+    <tr>
+        <td><strong>Endpoint</strong></td>
+        <td>Una URL específica que acepta peticiones. Ej: GET /team-journey.</td>
+    </tr>
+    <tr>
+        <td><strong>Enum</strong></td>
+        <td>Conjunto de valores constantes con nombre. Ej: colores, códigos de error.</td>
+    </tr>
+    <tr>
+        <td><strong>Frontend</strong></td>
+        <td>La parte visual. Lo que el usuario ve en el navegador.</td>
+    </tr>
+    <tr>
+        <td><strong>HTTP</strong></td>
+        <td>Protocolo de comunicación. GET (leer), POST (crear), PUT (actualizar), DELETE (borrar).</td>
+    </tr>
+    <tr>
+        <td><strong>Interface</strong></td>
+        <td>Define la forma de un objeto. Como un molde o contrato.</td>
+    </tr>
+    <tr>
+        <td><strong>Módulo</strong></td>
+        <td>Agrupa controllers y services relacionados. Como un piso del edificio.</td>
+    </tr>
+    <tr>
+        <td><strong>NestJS</strong></td>
+        <td>Framework para construir backends en TypeScript.</td>
+    </tr>
+    <tr>
+        <td><strong>Service</strong></td>
+        <td>Contiene la lógica de negocio. El "chef" que cocina los datos.</td>
+    </tr>
+    <tr>
+        <td><strong>Swagger</strong></td>
+        <td>Herramienta de documentación interactiva para APIs.</td>
+    </tr>
+    <tr>
+        <td><strong>TypeScript</strong></td>
+        <td>JavaScript con tipos. Agrega seguridad al código.</td>
+    </tr>
+    <tr>
+        <td><strong>.env</strong></td>
+        <td>Archivo de variables de entorno. Configuración que cambia por entorno.</td>
+    </tr>
+</table>
+
+<div style="text-align: center; margin: 50px 0; padding: 30px; background: var(--light); border-radius: 10px;">
+    <h2 style="color: var(--primary); border: none; background: transparent;">🏆 ¡Felicitaciones!</h2>
+    <p style="font-size: 1.2em;">Has construido una funcionalidad completa siguiendo patrones profesionales.</p>
+    <p>Programación III - UTN - 2026</p>
+</div>
+
+</body>
+</html>

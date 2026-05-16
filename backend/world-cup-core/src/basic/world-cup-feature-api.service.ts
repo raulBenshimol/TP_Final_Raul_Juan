@@ -10,6 +10,9 @@ import type {
   TeamCatalogApiItem,
   TeamStatsApiResponse,
 } from '../world-cup/services/model/simulation-service.interface';
+import type { 
+  JourneyApiResponse 
+} from '../world-cup/services/model/journey-api.interface'; 
 
 @Injectable()
 export class WorldCupFeatureApiService extends AbstractBaseService {
@@ -71,4 +74,11 @@ export class WorldCupFeatureApiService extends AbstractBaseService {
       lang: this.resolveLang(lang),
     });
   }
+
+  /** Obtiene el camino completo en el mundial para un equipo específico de la simulación actual. */
+  public async getTeamJourney(teamId: string, lang?: string): Promise<JourneyApiResponse> {
+      return this.getEndpointData<JourneyApiResponse>(`/world-cup/current/teams/${teamId}/journey`, {
+        lang: this.resolveLang(lang),
+      });
+    }  
 }
