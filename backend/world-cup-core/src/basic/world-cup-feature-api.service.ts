@@ -10,9 +10,12 @@ import type {
   TeamCatalogApiItem,
   TeamStatsApiResponse,
 } from '../world-cup/services/model/simulation-service.interface';
+/** Import new of journey-api.interface.ts the  intereface JourneyApiResponse  */
 import type { 
   JourneyApiResponse 
 } from '../world-cup/services/model/journey-api.interface'; 
+import type { StatsApiResponse, AwardsApiResponse } from '../world-cup/services/model/stats-awards-api.interface';
+
 
 @Injectable()
 export class WorldCupFeatureApiService extends AbstractBaseService {
@@ -31,54 +34,117 @@ export class WorldCupFeatureApiService extends AbstractBaseService {
     return super.getCurrentLang();
   }
 
-  public async getTeamPlayers(teamId: string, lang?: string): Promise<SquadPlayerApiItem[]> {
-    return this.getEndpointData<SquadPlayerApiItem[]>(`/teams/${teamId}/players`, {
-      lang: this.resolveLang(lang),
-    });
+  public async getTeamPlayers(
+    teamId: string,
+    lang?: string,
+  ): Promise<SquadPlayerApiItem[]> {
+    return this.getEndpointData<SquadPlayerApiItem[]>(
+      `/teams/${teamId}/players`,
+      {
+        lang: this.resolveLang(lang),
+      },
+    );
   }
 
-  public async getGameDictionary(lang?: string): Promise<GameDictionaryApiResponse> {
-    return this.getEndpointData<GameDictionaryApiResponse>('/reference/game-dictionary', {
-      lang: this.resolveLang(lang),
-    });
+  public async getGameDictionary(
+    lang?: string,
+  ): Promise<GameDictionaryApiResponse> {
+    return this.getEndpointData<GameDictionaryApiResponse>(
+      "/reference/game-dictionary",
+      {
+        lang: this.resolveLang(lang),
+      },
+    );
   }
 
-  public async getTeamHistory(teamId: string, lang?: string): Promise<TeamHistoryApiResponse> {
-    return this.getEndpointData<TeamHistoryApiResponse>(`/teams/${teamId}/history`, {
-      lang: this.resolveLang(lang),
-    });
+  public async getTeamHistory(
+    teamId: string,
+    lang?: string,
+  ): Promise<TeamHistoryApiResponse> {
+    return this.getEndpointData<TeamHistoryApiResponse>(
+      `/teams/${teamId}/history`,
+      {
+        lang: this.resolveLang(lang),
+      },
+    );
   }
 
-  public async listTeams(teamId?: string, name?: string): Promise<TeamCatalogApiItem[]> {
-    return this.getEndpointData<TeamCatalogApiItem[]>('/teams', {
+  public async listTeams(
+    teamId?: string,
+    name?: string,
+  ): Promise<TeamCatalogApiItem[]> {
+    return this.getEndpointData<TeamCatalogApiItem[]>("/teams", {
       teamId: teamId?.trim().toLowerCase(),
       name: name?.trim(),
     });
   }
 
-  public async getTeamStats(teamId: string, lang?: string): Promise<TeamStatsApiResponse> {
-    return this.getEndpointData<TeamStatsApiResponse>(`/teams/${teamId}/stats`, {
-      lang: this.resolveLang(lang),
-    });
+  public async getTeamStats(
+    teamId: string,
+    lang?: string,
+  ): Promise<TeamStatsApiResponse> {
+    return this.getEndpointData<TeamStatsApiResponse>(
+      `/teams/${teamId}/stats`,
+      {
+        lang: this.resolveLang(lang),
+      },
+    );
   }
 
-  public async getCurrentWorldCup(lang?: string): Promise<CurrentWorldCupApiResponse> {
-    return this.getEndpointData<CurrentWorldCupApiResponse>('/world-cup/current', {
-      lang: this.resolveLang(lang),
-    });
+  public async getCurrentWorldCup(
+    lang?: string,
+  ): Promise<CurrentWorldCupApiResponse> {
+    return this.getEndpointData<CurrentWorldCupApiResponse>(
+      "/world-cup/current",
+      {
+        lang: this.resolveLang(lang),
+      },
+    );
   }
 
-  public async simulateWorldCup(teamId: string, lang?: string): Promise<CurrentWorldCupApiResponse> {
-    return this.postEndpointData<CurrentWorldCupApiResponse>('/world-cup/simulate', {
-      teamId,
-      lang: this.resolveLang(lang),
-    });
+  public async simulateWorldCup(
+    teamId: string,
+    lang?: string,
+  ): Promise<CurrentWorldCupApiResponse> {
+    return this.postEndpointData<CurrentWorldCupApiResponse>(
+      "/world-cup/simulate",
+      {
+        teamId,
+        lang: this.resolveLang(lang),
+      },
+    );
   }
 
   /** Obtiene el camino completo en el mundial para un equipo específico de la simulación actual. */
-  public async getTeamJourney(teamId: string, lang?: string): Promise<JourneyApiResponse> {
-      return this.getEndpointData<JourneyApiResponse>(`/world-cup/current/teams/${teamId}/journey`, {
+  public async getTeamJourney(
+    teamId: string,
+    lang?: string,
+  ): Promise<JourneyApiResponse> {
+    return this.getEndpointData<JourneyApiResponse>(
+      `/world-cup/current/teams/${teamId}/journey`,
+      {
         lang: this.resolveLang(lang),
-      });
-    }  
+      },
+    );
+  }
+  /** Obtiene las estadísticas agregadas del mundial actual (solo disponible cuando status es ENDED). */
+  public async getCurrentWorldCupStats(
+    lang?: string,
+  ): Promise<StatsApiResponse> {
+    return this.getEndpointData<StatsApiResponse>("/world-cup/current/stats", {
+      lang: this.resolveLang(lang),
+    });
+  }
+
+  /** Obtiene los premios individuales del mundial actual (Balón de Oro, Bota de Oro, etc.). */
+  public async getCurrentWorldCupAwards(
+    lang?: string,
+  ): Promise<AwardsApiResponse> {
+    return this.getEndpointData<AwardsApiResponse>(
+      "/world-cup/current/awards",
+      {
+        lang: this.resolveLang(lang),
+      },
+    );
+  }
 }
