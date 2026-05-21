@@ -21,10 +21,10 @@
     <div class="card">
       <div class="card-header">
         <span class="card-title">{{ pageState.selectedTeamLabel }}</span>
-        <span class="badge badge-primary">{{ journey.stageReached }}</span>
+        <span class="badge badge-primary">{{ journey.stageReachedLabel || journey.stageReached }}</span>
       </div>
       <p>{{ journey.summary }}</p>
-      <p class="mt-16">Partidos jugados: <strong>{{ journey.totalMatches }}</strong></p>
+      <p class="mt-16">Partidos jugados: <strong>{{ journey.matchesPlayed }}</strong></p>
       <p *ngIf="journey.isChampion">⭐ ¡Campeón! ⭐</p>
     </div>
 
@@ -33,31 +33,33 @@
         <div
           class="journey-dot"
           [ngClass]="{
-            'jd-win': match.resultClass === 'win',
-            'jd-loss': match.resultClass === 'loss',
-            'jd-draw': match.resultClass === 'draw',
-            'jd-pend': match.resultClass === 'pending'
+            'jd-win': match.resultStyle === 'WIN',
+            'jd-loss': match.resultStyle === 'LOSS',
+            'jd-draw': match.resultStyle === 'DRAW',
+            'jd-pend': match.resultStyle === 'PENDING'
           }"
         >
           {{ match.isPending ? '?' : '✓' }}
         </div>
 
         <div class="journey-card" [class.j-pending]="match.isPending">
-          <div class="j-stage">{{ match.stage }}</div>
-          <div class="j-score" *ngIf="!match.isPending">{{ match.score }}</div>
+          <div class="j-stage">{{ match.stageLabel || match.stage }}</div>
+          <div class="j-score" *ngIf="!match.isPending">{{ match.scoreLabel }}</div>
           <div class="j-score" *ngIf="match.isPending">-</div>
-          <div class="j-vs">{{ match.opponentTeamName }}</div>
-          <div class="j-res">{{ match.resolution }}</div>
+          <div class="j-vs">
+            {{ match.opponentFlag }} {{ match.opponentTeamName }}
+          </div>
+          <div class="j-res">{{ match.resolutionLabel || match.resolution }}</div>
           <span
             class="j-badge"
             [ngClass]="{
-              'j-win': match.resultClass === 'win',
-              'j-loss': match.resultClass === 'loss',
-              'j-draw': match.resultClass === 'draw',
-              'j-pend': match.resultClass === 'pending'
+              'j-win': match.resultStyle === 'WIN',
+              'j-loss': match.resultStyle === 'LOSS',
+              'j-draw': match.resultStyle === 'DRAW',
+              'j-pend': match.resultStyle === 'PENDING'
             }"
           >
-            {{ match.result }}
+            {{ match.resultLabel }}
           </span>
         </div>
       </div>

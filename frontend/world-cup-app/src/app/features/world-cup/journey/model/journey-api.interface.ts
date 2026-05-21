@@ -1,14 +1,20 @@
-export interface JourneyMatchApiItem {
+export type JourneyResultStyle = 'WIN' | 'LOSS' | 'DRAW' | 'PENDING';
+
+export interface JourneyTimelineApiItem {
   stage: string;
+  stageLabel: string;
   matchCode: string;
   opponentTeamId: string;
   opponentTeamName: string;
+  opponentFlag: string;
   goalsFor: number | null;
   goalsAgainst: number | null;
-  score: string;
+  scoreLabel: string;
   result: string;
-  resultClass: string;
+  resultLabel: string;
+  resultStyle: JourneyResultStyle;
   resolution: string;
+  resolutionLabel: string;
   isPending: boolean;
 }
 
@@ -16,12 +22,15 @@ export interface JourneyApiResponse {
   worldCupId: string;
   teamId: string;
   teamName: string;
+  lang: 'es' | 'en';
   worldCupStatus: string;
   stageReached: string;
+  stageReachedLabel: string;
   isChampion: boolean;
   isFinalPending: boolean;
+  eliminatedByTeamId: string | null;
+  eliminatedByTeamName: string | null;
   summary: string;
-  totalMatches: number;
-  eliminatedBy: string | null;
-  matches: JourneyMatchApiItem[];
+  matchesPlayed: number;
+  matches: JourneyTimelineApiItem[];
 }

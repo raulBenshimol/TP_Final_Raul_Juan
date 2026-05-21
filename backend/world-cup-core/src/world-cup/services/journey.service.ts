@@ -63,6 +63,7 @@ export class JourneyService extends AbstractBaseService {
 
       // 4. Construir y retornar el modelo de pantalla completo
       return new JourneyScreenModel({
+        lang: resolvedLang,
         teamId: apiResponse.teamId,
         teamName: apiResponse.teamName,
         worldCupId: apiResponse.worldCupId,
