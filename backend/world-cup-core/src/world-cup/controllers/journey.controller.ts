@@ -10,7 +10,7 @@ export class JourneyController {
 
   @Get('team-journey')
   @ApiOperation({ summary: 'Get the full world cup journey for the configured team' })
-  @ApiQuery({ name: 'lang', required: false, description: 'Response language (es, en)' })
+  //@ApiQuery({ name: 'lang', required: false, description: 'Response language (es, en)' })
   @ApiResponse({ status: 200, description: 'Team journey data' })
   @ApiResponse({ status: 502, description: 'World Cup API unavailable' })
   async getTeamJourney(@Query('lang') lang?: string): Promise<JourneyScreenModel> {
