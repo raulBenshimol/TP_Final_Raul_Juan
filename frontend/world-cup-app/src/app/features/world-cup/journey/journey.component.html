@@ -1,6 +1,68 @@
-<section class="card">
-  <div class="card-header">
-    <span class="card-title">Camino del equipo</span>
+<ng-container *ngIf="viewModel as pageState">
+  
+  <div class="empty-state" *ngIf="pageState.loading">
+    <div class="empty-icon">⏳</div>
+    <p>Cargando camino del equipo...</p>
   </div>
-  <p>Este componente debe ser desarrollado por el alumno.</p>
-</section>
+
+  <div class="empty-state" *ngIf="!pageState.loading && pageState.errorMessage">
+    <div class="empty-icon">⚠️</div>
+    <p>{{ pageState.errorMessage }}</p>
+  </div>
+
+  <div class="empty-state mt-16" *ngIf="!pageState.loading && !pageState.errorMessage && pageState.showNoSimulationState">
+    <div class="empty-icon">🏟️</div>
+    <p>No hay datos del camino disponibles.</p>
+    <p>Simula el mundial primero para ver el recorrido del equipo.</p>
+  </div>
+
+  <ng-container *ngIf="!pageState.loading && !pageState.errorMessage && !pageState.showNoSimulationState && pageState.journey as journey">
+    
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">{{ pageState.selectedTeamLabel }}</span>
+        <span class="badge badge-primary">{{ journey.stageReached }}</span>
+      </div>
+      <p>{{ journey.summary }}</p>
+      <p class="mt-16">Partidos jugados: <strong>{{ journey.totalMatches }}</strong></p>
+      <p *ngIf="journey.isChampion">⭐ ¡Campeón! ⭐</p>
+    </div>
+
+    <div class="journey-timeline mt-20">
+      <div class="journey-item" *ngFor="let match of journey.matches">
+        <div
+          class="journey-dot"
+          [ngClass]="{
+            'jd-win': match.resultClass === 'win',
+            'jd-loss': match.resultClass === 'loss',
+            'jd-draw': match.resultClass === 'draw',
+            'jd-pend': match.resultClass === 'pending'
+          }"
+        >
+          {{ match.isPending ? '?' : '✓' }}
+        </div>
+
+        <div class="journey-card" [class.j-pending]="match.isPending">
+          <div class="j-stage">{{ match.stage }}</div>
+          <div class="j-score" *ngIf="!match.isPending">{{ match.score }}</div>
+          <div class="j-score" *ngIf="match.isPending">-</div>
+          <div class="j-vs">{{ match.opponentTeamName }}</div>
+          <div class="j-res">{{ match.resolution }}</div>
+          <span
+            class="j-badge"
+            [ngClass]="{
+              'j-win': match.resultClass === 'win',
+              'j-loss': match.resultClass === 'loss',
+              'j-draw': match.resultClass === 'draw',
+              'j-pend': match.resultClass === 'pending'
+            }"
+          >
+            {{ match.result }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+</ng-container>
